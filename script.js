@@ -379,7 +379,7 @@
   }
 
   // WhatsApp: el mensaje queda escrito en el chat para que Dereck lo revise y lo envíe él mismo
-  const WHATSAPP_NUMBER = "57XXXXXXXXXX"; // código de país + número, sin "+" ni espacios
+  const WHATSAPP_NUMBER = "573106814296"; // código de país + número, sin "+" ni espacios
   const WHATSAPP_TEXT =
     "¡Holaa Mishelle! 🎄 Confirmo mi asistencia al Open House Navideño del viernes 23 de octubre a las 6:30 p.m. ¡Allí estaré! ❤️ — Dereck";
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
