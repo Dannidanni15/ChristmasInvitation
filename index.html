@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Para Dereck · Open House Navideño</title>
+  <meta name="description" content="Una invitación muy especial de Mishelle para Dereck: Open House navideño en el Hogar de Damas, viernes 23 de octubre a las 6:30 p.m.">
+  <meta name="theme-color" content="#13261e">
+  <meta property="og:title" content="Dereck, tienes una carta 💌">
+  <meta property="og:description" content="Open House Navideño · Viernes 23 de octubre · 6:30 p.m.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='34' r='24' fill='%236b1e2e'/%3E%3Cpath d='M32 46c-9-6-13-11-12-16 1-5 7-6 12-1 5-5 11-4 12 1 1 5-3 10-12 16z' fill='%23e3cf9f'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="is-locked">
+
+  <!-- ============ Símbolos SVG reutilizables ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <!-- La rama de pino se genera con JS (agujas) -->
+      <symbol id="sprig" viewBox="0 0 110 40" overflow="visible"></symbol>
+
+      <symbol id="bow" viewBox="-40 -24 80 62" overflow="visible">
+        <path d="M0 0C-8-12-30-20-34-8c-3 9 14 14 34 8z" fill="#7a1f33"/>
+        <path d="M0 0C8-12 30-20 34-8c3 9-14 14-34 8z" fill="#7a1f33"/>
+        <path d="M0 0C-7-8-22-14-27-7" fill="none" stroke="#9c3247" stroke-width="2"/>
+        <path d="M0 0C7-8 22-14 27-7" fill="none" stroke="#9c3247" stroke-width="2"/>
+        <path d="M-2 3-14 34l6-3 3 6L2 5z" fill="#5e1626"/>
+        <path d="M2 3 14 34l-6-3-3 6L-2 5z" fill="#6b1a2b"/>
+        <ellipse cx="0" cy="1" rx="6" ry="5.5" fill="#8c2a3f" stroke="#c9a96e" stroke-width=".8"/>
+      </symbol>
+
+      <symbol id="mistletoe" viewBox="0 0 80 110" overflow="visible">
+        <path d="M40 0v30" stroke="#c9a96e" stroke-width="1" fill="none"/>
+        <path d="M40 30c-2 20-10 36-22 50M40 30c3 22 10 38 24 50M40 30c0 22 1 40 0 58" stroke="#4d6b3c" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g fill="#7f9a5e">
+          <ellipse cx="22" cy="62" rx="7" ry="17" transform="rotate(38 22 62)"/>
+          <ellipse cx="58" cy="64" rx="7" ry="17" transform="rotate(-36 58 64)"/>
+          <ellipse cx="32" cy="80" rx="6" ry="15" transform="rotate(12 32 80)" fill="#6b8a4e"/>
+          <ellipse cx="50" cy="82" rx="6" ry="15" transform="rotate(-14 50 82)" fill="#6b8a4e"/>
+        </g>
+        <g fill="#fbf7ef" stroke="#d9cfb9" stroke-width=".6">
+          <circle cx="36" cy="48" r="4.2"/><circle cx="44" cy="47" r="4.2"/><circle cx="40" cy="54" r="4.2"/>
+        </g>
+        <g transform="translate(40 30) scale(.42)"><use href="#bow" x="-40" y="-24" width="80" height="62"/></g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============ Ambiente: bokeh + nieve ============ -->
+  <div class="bokeh" aria-hidden="true"></div>
+  <canvas id="snow" aria-hidden="true"></canvas>
+  <div class="sparkle-layer" aria-hidden="true"></div>
+
+  <!-- ============ 1. Pantalla de entrada: el sobre ============ -->
+  <section class="intro" id="intro" aria-label="Sobre de invitación">
+    <p class="intro__kicker">Correo de Navidad</p>
+    <h1 class="intro__title">Dereck, tienes una carta</h1>
+
+    <div class="envelope" id="envelope">
+      <div class="envelope__back"></div>
+
+      <div class="envelope__letter" aria-hidden="true">
+        <span class="letter__mini">para</span>
+        <span class="letter__name">Dereck</span>
+        <span class="letter__line"></span>
+        <span class="letter__mini">con amor, Mishelle</span>
+      </div>
+
+      <svg class="envelope__front" viewBox="0 0 300 200" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="gFrontL" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#5a1726"/><stop offset="1" stop-color="#6e1f31"/>
+          </linearGradient>
+          <linearGradient id="gFrontB" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#5c1828"/><stop offset="1" stop-color="#7a2437"/>
+          </linearGradient>
+        </defs>
+        <polygon points="0,0 152,108 0,200" fill="url(#gFrontL)"/>
+        <polygon points="300,0 148,108 300,200" fill="url(#gFrontL)"/>
+        <polygon points="0,200 150,96 300,200" fill="url(#gFrontB)"/>
+        <polyline points="0,200 150,96 300,200" fill="none" stroke="#c9a96e" stroke-opacity=".55" stroke-width="1"/>
+        <rect x="6" y="6" width="288" height="188" fill="none" stroke="#c9a96e" stroke-opacity=".35" stroke-width=".8"/>
+      </svg>
+
+      <div class="envelope__flap-wrap">
+        <svg class="envelope__flap" viewBox="0 0 300 116" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="gFlap" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#6b1e2e"/><stop offset="1" stop-color="#832a3d"/>
+            </linearGradient>
+          </defs>
+          <polygon points="0,0 300,0 150,116" fill="url(#gFlap)"/>
+          <polyline points="0,0 150,116 300,0" fill="none" stroke="#c9a96e" stroke-opacity=".7" stroke-width="1.2"/>
+        </svg>
+      </div>
+
+      <button class="seal" id="seal" type="button" aria-label="Abrir la invitación">
+        <span class="seal__wax">
+          <span class="seal__mono">M<small>&amp;</small>D</span>
+        </span>
+        <svg class="seal__sprig" viewBox="0 0 110 40" aria-hidden="true"><use href="#sprig"/></svg>
+      </button>
+    </div>
+
+    <p class="intro__hint">Toca el sello para abrirla</p>
+  </section>
+
+  <!-- ============ Contenido ============ -->
+  <main class="page" id="page" aria-hidden="true">
+
+    <!-- Hero: la tarjeta -->
+    <section class="hero">
+      <article class="card card--hero">
+        <svg class="garland" viewBox="0 0 400 90" aria-hidden="true">
+          <g class="garland__pine">
+            <use href="#sprig" width="110" height="40" transform="translate(200 30) rotate(196) scale(1.25) translate(0 -20)"/>
+            <use href="#sprig" width="110" height="40" transform="translate(200 30) rotate(-16) scale(1.25) translate(0 -20)"/>
+            <use href="#sprig" width="110" height="40" transform="translate(196 26) rotate(170) scale(1.05) translate(0 -20)"/>
+            <use href="#sprig" width="110" height="40" transform="translate(204 26) rotate(10) scale(1.05) translate(0 -20)"/>
+            <use href="#sprig" width="110" height="40" transform="translate(200 34) rotate(205) scale(.8) translate(0 -20)"/>
+            <use href="#sprig" width="110" height="40" transform="translate(200 34) rotate(-25) scale(.8) translate(0 -20)"/>
+          </g>
+          <g class="garland__lights">
+            <circle cx="92" cy="22" r="3"/><circle cx="130" cy="44" r="2.6"/><circle cx="160" cy="18" r="2.4"/>
+            <circle cx="240" cy="18" r="2.4"/><circle cx="270" cy="44" r="2.6"/><circle cx="308" cy="22" r="3"/>
+            <circle cx="58" cy="44" r="2.2"/><circle cx="342" cy="44" r="2.2"/>
+          </g>
+          <g class="garland__berries" fill="#8c1f35">
+            <circle cx="112" cy="34" r="3.2"/><circle cx="117" cy="38" r="2.8"/>
+            <circle cx="288" cy="34" r="3.2"/><circle cx="283" cy="38" r="2.8"/>
+          </g>
+          <use href="#bow" x="170" y="10" width="60" height="47"/>
+        </svg>
+
+        <svg class="mistletoe" viewBox="0 0 80 110" aria-hidden="true"><use href="#mistletoe"/></svg>
+
+        <div class="card__inner">
+          <p class="eyebrow hero__in" style="--d:.1s">Para el amor de mi vida</p>
+          <h2 class="hero__name hero__in" style="--d:.25s">Dereck Rowley</h2>
+
+          <div class="ornament-divider hero__in" style="--d:.4s" aria-hidden="true">
+            <span></span><i>✦</i><span></span>
+          </div>
+
+          <p class="hero__lead hero__in" style="--d:.5s">
+            Esta Navidad quiero tenerte a mi lado.
+            Te invito, con todo mi corazón, a nuestro
+          </p>
+
+          <h3 class="hero__event hero__in" style="--d:.65s">Open House</h3>
+          <p class="hero__event-sub hero__in" style="--d:.75s">Navideño</p>
+          <p class="hero__place hero__in" style="--d:.85s">en el <em>Hogar de Damas</em></p>
+
+          <div class="date-band hero__in" style="--d:1s">
+            <span class="date-band__side">Viernes</span>
+            <span class="date-band__mid">
+              <small>Octubre</small>
+              <strong>23</strong>
+            </span>
+            <span class="date-band__side">6:30 p.m.</span>
+          </div>
+
+          <p class="signature hero__in" style="--d:1.15s"><span>con amor,</span> Mishelle Rojas</p>
+        </div>
+      </article>
+
+      <a class="scroll-cue" href="#frase" aria-label="Seguir bajando">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- Frase romántica -->
+    <section class="quote reveal" id="frase">
+      <span class="quote__star" aria-hidden="true">✦</span>
+      <p class="quote__text" id="typewriter"
+         data-text="De todas las luces de diciembre, tú eres la que más brilla."
+         aria-label="De todas las luces de diciembre, tú eres la que más brilla."></p>
+    </section>
+
+    <!-- Cuenta regresiva -->
+    <section class="countdown reveal" aria-labelledby="cd-title">
+      <p class="eyebrow eyebrow--light">Falta muy poquito</p>
+      <h2 class="section-title section-title--light" id="cd-title">Cuenta regresiva</h2>
+
+      <div class="ornaments" id="countdown" role="timer" aria-live="off">
+        <div class="ornament ornament--wine" style="--len:28px; --delay:0s">
+          <span class="ornament__ball"><b data-unit="days">00</b><small>días</small></span>
+        </div>
+        <div class="ornament ornament--pine" style="--len:52px; --delay:-1.2s">
+          <span class="ornament__ball"><b data-unit="hours">00</b><small>horas</small></span>
+        </div>
+        <div class="ornament ornament--gold" style="--len:36px; --delay:-2.1s">
+          <span class="ornament__ball"><b data-unit="minutes">00</b><small>min</small></span>
+        </div>
+        <div class="ornament ornament--blush" style="--len:60px; --delay:-.6s">
+          <span class="ornament__ball"><b data-unit="seconds">00</b><small>seg</small></span>
+        </div>
+      </div>
+      <p class="countdown__done" id="countdown-done" hidden>¡Hoy es nuestra noche mágica! ✨</p>
+    </section>
+
+    <!-- Detalles -->
+    <section class="details" aria-labelledby="det-title">
+      <article class="card card--details reveal">
+        <div class="card__inner">
+          <p class="eyebrow">Guarda la fecha</p>
+          <h2 class="section-title" id="det-title">Los detalles</h2>
+
+          <ul class="details__grid">
+            <li class="detail reveal" style="--d:.05s">
+              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                <path pathLength="1" d="M12 16c10-1.5 30-1.2 40 .3 1.2 10 1 28-.4 36-12 1.3-27 1-39-.2C11 42 11 26 12 16z"/>
+                <path pathLength="1" d="M12.5 25c12 .8 27 .6 39-.4"/>
+                <path pathLength="1" d="M22 10.5c.3 2.5.2 5 0 8M42 10.5c.2 2.5.3 5 0 8"/>
+                <path pathLength="1" class="icon__accent" d="M32 46c-6-4-8.5-7-8-10 .5-3 4.5-4 8-.5 3.5-3.5 7.5-2.5 8 .5.5 3-2 6-8 10z"/>
+              </svg>
+              <h3>Fecha</h3>
+              <p>Viernes<br><strong>23 de octubre</strong></p>
+            </li>
+            <li class="detail reveal" style="--d:.15s">
+              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                <path pathLength="1" d="M32 10c12.5-.5 22 9 22 21.5S45 54.5 32.5 54 10 44.5 10.5 32 19.5 10.5 32 10z"/>
+                <path pathLength="1" d="M32 19.5v13l8.5 5.5"/>
+                <path pathLength="1" class="icon__accent" d="M32 13.8v2.6M50.2 32h-2.6M32 50.2v-2.6M13.8 32h2.6"/>
+              </svg>
+              <h3>Hora</h3>
+              <p>A partir de las<br><strong>6:30 p.m.</strong></p>
+            </li>
+            <li class="detail reveal" style="--d:.25s">
+              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                <path pathLength="1" d="M9.5 30.5 32 11.5l22.5 19"/>
+                <path pathLength="1" d="M15 26.5c-.5 9-.3 18 .3 26 11 .5 22 .4 33-.2.6-8 .7-17 .2-26"/>
+                <path pathLength="1" d="M27 52.5V41c0-3.5 10-3.5 10 0v11.5"/>
+                <path pathLength="1" class="icon__accent" d="M32 25.5c2.8 0 4.6 2 4.5 4.5 0 2.6-2 4.5-4.5 4.5s-4.5-2-4.5-4.5 1.8-4.6 4.5-4.5z"/>
+                <path pathLength="1" d="M43 20V12.5h5.2v12"/>
+              </svg>
+              <h3>Lugar</h3>
+              <p>Open House en el<br><strong>Hogar de Damas</strong></p>
+            </li>
+            <li class="detail reveal" style="--d:.35s">
+              <svg class="icon" viewBox="0 0 64 64" aria-hidden="true">
+                <path pathLength="1" d="M29 32c-6-6-12.5-9.5-17.5-8-2.5 4-2.5 13 0 17 5 1.5 11.5-3 17.5-9z"/>
+                <path pathLength="1" d="M35 32c6-6 12.5-9.5 17.5-8 2.5 4 2.5 13 0 17-5 1.5-11.5-3-17.5-9z"/>
+                <path pathLength="1" d="M29 28.5c2-1 4-1 6 0 .6 2 .6 5 0 7-2 1-4 1-6 0-.6-2-.6-5 0-7z"/>
+                <path pathLength="1" class="icon__accent" d="M50 9v7M46.5 12.5h7M14 46v6M11 49h6"/>
+              </svg>
+              <h3>Vestimenta</h3>
+              <p>Elegante<br><strong>¡a brillar juntos!</strong></p>
+            </li>
+          </ul>
+
+          <p class="details__note">Temática: <em>Navidad</em> · un toque de rojo, verde o dorado será perfecto</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Galería: polaroids colgadas -->
+    <section class="moments reveal" aria-labelledby="mom-title">
+      <p class="eyebrow eyebrow--light">Un poquito de nosotros</p>
+      <h2 class="section-title section-title--light" id="mom-title">Pequeños momentos</h2>
+
+      <div class="garlands">
+        <div class="swag">
+          <svg class="swag__string" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 6C80 52 220 52 300 6"/>
+          </svg>
+          <div class="swag__bulbs" aria-hidden="true">
+            <i style="--x:8%;--y:14px"></i><i style="--x:30%;--y:34px"></i><i style="--x:50%;--y:38px"></i><i style="--x:70%;--y:34px"></i><i style="--x:92%;--y:14px"></i>
+          </div>
+          <button class="polaroid" type="button" style="--rot:-5deg;--x:27%;--y:22px" data-index="0" aria-label="Ver foto 1">
+            <img src="img/foto-1.jpg" alt="Mishelle y Dereck sonriendo juntos" loading="lazy" decoding="async" width="900" height="675" style="object-position:50% 40%">
+            <span>nosotros ♥︎</span>
+          </button>
+          <button class="polaroid" type="button" style="--rot:4deg;--x:73%;--y:28px" data-index="1" aria-label="Ver foto 2">
+            <img src="img/foto-2.jpg" alt="Mishelle dándole un beso a Dereck frente a un árbol de luces" loading="lazy" decoding="async" width="675" height="900" style="object-position:50% 35%">
+            <span>bajo las luces</span>
+          </button>
+        </div>
+
+        <div class="swag">
+          <svg class="swag__string" viewBox="0 0 300 60" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 6C80 52 220 52 300 6"/>
+          </svg>
+          <div class="swag__bulbs" aria-hidden="true">
+            <i style="--x:8%;--y:14px"></i><i style="--x:30%;--y:34px"></i><i style="--x:50%;--y:38px"></i><i style="--x:70%;--y:34px"></i><i style="--x:92%;--y:14px"></i>
+          </div>
+          <button class="polaroid" type="button" style="--rot:3deg;--x:27%;--y:22px" data-index="2" aria-label="Ver foto 3">
+            <img src="img/foto-3.jpg" alt="Selfie de Dereck y Mishelle de noche" loading="lazy" decoding="async" width="900" height="675" style="object-position:45% 50%">
+            <span>tú y yo</span>
+          </button>
+          <button class="polaroid" type="button" style="--rot:-4deg;--x:73%;--y:28px" data-index="3" aria-label="Ver foto 4">
+            <img src="img/foto-4.jpg" alt="Mishelle apoyada en el hombro de Dereck" loading="lazy" decoding="async" width="900" height="600" style="object-position:50% 40%">
+            <span>mi lugar favorito</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Confirmación -->
+    <section class="rsvp" aria-labelledby="rsvp-title">
+      <article class="card card--rsvp reveal">
+        <div class="card__inner">
+          <svg class="rsvp__bow" viewBox="-40 -24 80 62" aria-hidden="true"><use href="#bow"/></svg>
+          <h2 class="rsvp__title" id="rsvp-title">¿Me acompañas?</h2>
+          <p class="rsvp__text">Nada me haría más feliz que verte llegar esa noche.</p>
+
+          <button class="btn btn--primary" id="rsvp-btn" type="button">
+            <span class="btn__label">Confirmar asistencia</span>
+          </button>
+          <p class="rsvp__msg" id="rsvp-msg" role="status" aria-live="polite"></p>
+
+          <div class="calendar-actions">
+            <button class="btn btn--ghost" id="ics-btn" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5h14v13H5zM5 10.5h14M9 4v4M15 4v4M12 13.5v4M10 15.5h4"/></svg>
+              Agregar al calendario
+            </button>
+            <a class="link-soft" id="gcal-link" target="_blank" rel="noopener">o en Google Calendar</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <svg class="footer__sprig" viewBox="0 0 110 40" aria-hidden="true"><use href="#sprig"/></svg>
+      <p class="footer__sign">Te espero, Mishelle</p>
+      <p class="footer__meta">23 · 10 · 2026 &nbsp;✦&nbsp; Hogar de Damas</p>
+    </footer>
+  </main>
+
+  <!-- Controles flotantes -->
+  <div class="controls" id="controls" hidden>
+    <button class="control" id="snow-toggle" type="button" aria-pressed="true" aria-label="Desactivar nieve" title="Nieve">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5v19M3.8 7.2l16.4 9.6M3.8 16.8l16.4-9.6M9.5 4l2.5 2 2.5-2M9.5 20l2.5-2 2.5 2M4.2 10.6l3-.6-.9-3M19.8 13.4l-3 .6.9 3M4.2 13.4l3 .6-.9 3M19.8 10.6l-3-.6.9-3"/></svg>
+    </button>
+    <button class="control" id="music-toggle" type="button" aria-pressed="false" aria-label="Activar música navideña" title="Música">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17.5V5.5l11-2v12"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="15.5" r="2.5"/></svg>
+    </button>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" hidden>
+    <button class="lightbox__close" type="button" aria-label="Cerrar">&times;</button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" aria-label="Foto anterior">‹</button>
+    <figure class="lightbox__figure">
+      <img alt="">
+      <figcaption></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" type="button" aria-label="Foto siguiente">›</button>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
