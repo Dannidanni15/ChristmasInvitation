@@ -378,10 +378,36 @@
     setTimeout(() => burst(cx, cy, { count: 16, spread: 210, hearts: true, sizeMax: 22 }), 450);
   }
 
-  if (store.get("rsvp-dereck") === "si") setConfirmed(false);
+  // WhatsApp: el mensaje queda escrito en el chat para que Dereck lo revise y lo envíe él mismo
+  const WHATSAPP_NUMBER = "57XXXXXXXXXX"; // código de país + número, sin "+" ni espacios
+  const WHATSAPP_TEXT =
+    "¡Holaa Mishelle! 🎄 Confirmo mi asistencia al Open House Navideño del viernes 23 de octubre a las 6:30 p.m. ¡Allí estaré! ❤️ — Dereck";
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_TEXT)}`;
+  const WHATSAPP_DELAY = 1500;
+  const isMobile = window.matchMedia("(pointer: coarse)").matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  const waFallback = $("#wa-fallback");
+  $("a", waFallback).href = whatsappUrl;
+
+  function openWhatsApp() {
+    // En computador se abre una pestaña nueva ya mismo (dentro del clic, para que el navegador no la bloquee)
+    // y se lleva a WhatsApp Web al terminar la animación. En celular, wa.me abre directamente la app.
+    const tab = isMobile ? null : window.open("", "_blank");
+    setTimeout(() => {
+      if (tab && !tab.closed) tab.location.href = whatsappUrl;
+      else window.location.href = whatsappUrl;
+      waFallback.hidden = false;
+    }, reduceMotion ? 300 : WHATSAPP_DELAY);
+  }
+
+  if (store.get("rsvp-dereck") === "si") {
+    setConfirmed(false);
+    waFallback.hidden = false;
+  }
   rsvpBtn.addEventListener("click", () => {
     store.set("rsvp-dereck", "si");
     setConfirmed(true);
+    openWhatsApp();
   });
 
   /* ---------- Calendario ---------- */

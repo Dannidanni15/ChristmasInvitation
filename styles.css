@@ -1064,6 +1064,9 @@ body.is-open .scroll-cue { opacity: 1; }
 }
 .rsvp__msg.is-shown { margin-top: 16px; opacity: 1; transform: none; }
 
+.rsvp__wa { margin: 6px 0 0; }
+.rsvp__wa[hidden] { display: none; }
+
 .calendar-actions {
   display: flex;
   flex-direction: column;
