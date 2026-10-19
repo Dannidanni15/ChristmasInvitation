@@ -363,7 +363,7 @@
 
   function setConfirmed(animate) {
     rsvpBtn.classList.add("is-confirmed");
-    $(".btn__label", rsvpBtn).textContent = "¡Confirmado! ♥︎";
+    $(".btn__label", rsvpBtn).textContent = "¡Confirmado!";
     rsvpMsg.textContent = "¡Te espero! ❤️";
     rsvpMsg.classList.add("is-shown");
     if (!animate) return;

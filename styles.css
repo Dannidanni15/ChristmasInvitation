@@ -565,50 +565,11 @@ button { font: inherit; color: inherit; }
 }
 
 .hero__place {
-  margin: 4px 0 22px;
+  margin: 4px 0 26px;
   font-size: 1.1rem;
   color: var(--ink-soft);
 }
 .hero__place em { font-style: italic; color: var(--ink); font-weight: 500; }
-
-.date-band {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 14px;
-  max-width: 340px;
-  margin: 0 auto 26px;
-  color: var(--wine);
-}
-.date-band__side {
-  padding: 8px 0;
-  border-top: 1px solid rgba(201, 169, 110, .8);
-  border-bottom: 1px solid rgba(201, 169, 110, .8);
-  font-size: .82rem;
-  font-weight: 600;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.date-band__mid {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1;
-}
-.date-band__mid small {
-  font-size: .72rem;
-  letter-spacing: .3em;
-  text-indent: .3em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.date-band__mid strong {
-  font-size: 3.4rem;
-  font-weight: 500;
-  line-height: .95;
-  color: var(--wine);
-}
 
 .signature {
   margin: 0;
@@ -888,17 +849,6 @@ body.is-open .scroll-cue { opacity: 1; }
 .icon path.icon__accent { stroke: var(--wine-soft); transition-delay: calc(var(--d, 0s) + .9s); }
 .detail.is-visible .icon path { stroke-dashoffset: 0; }
 
-.details__note {
-  margin: 30px auto 0;
-  padding-top: 18px;
-  max-width: 34ch;
-  border-top: 1px solid rgba(201, 169, 110, .5);
-  font-size: .98rem;
-  font-style: italic;
-  color: var(--ink-soft);
-}
-.details__note em { color: var(--wine); font-weight: 500; }
-
 /* ---------- Momentos (polaroids) ---------- */
 
 .moments {
@@ -1172,15 +1122,6 @@ body.is-open .scroll-cue { opacity: 1; }
   font-size: 2.4rem;
   color: var(--cream);
 }
-.footer__meta {
-  margin: 0;
-  font-size: .78rem;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  color: var(--gold-soft);
-  opacity: .75;
-}
-
 /* ---------- Revelado al hacer scroll ---------- */
 
 .reveal {
@@ -1320,8 +1261,6 @@ body.is-open .scroll-cue { opacity: 1; }
 @media (max-width: 360px) {
   body { font-size: 17px; }
   .card__inner { padding-left: 18px; padding-right: 18px; }
-  .date-band { gap: 8px; }
-  .date-band__side { letter-spacing: .14em; font-size: .76rem; }
   .details__grid { gap: 22px 6px; }
 }
 
